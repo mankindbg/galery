@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Alumni Photo Gallery</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+		body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #3498db;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-around; /* Distribute content space between title and logo */
+        }
+
+        h1 {
+            font-size: 36px;
+            margin: 0; /* Remove margin to avoid spacing issues */*/
+        }
+
+        #schoolLogo {
+            max-height: 80px; /* Adjust the height as needed */
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .photo {
+            border: 1px solid #ddd;
+            padding: 10px;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .photo p {
+            font-family: 'Indie Flower', cursive;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .photo img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .social-media {
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Center-align the items horizontally */
+            margin-top: 10px;
+        }
+
+        .social-media a {
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-right: 20px; /* Adjust the margin as needed */
+        }
+
+        .social-media img {
+            width: 48px;
+            height: 48px;
+        }
+
+        .pagination {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .pagination button {
+            background-color: #3498db; /* Blue color */
+            color: #fff; /* White text color */
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .pagination button:hover {
+            background-color: #3498db; /* Darker blue on hover */
+        }
+
+        footer {
+            background-color: #3498db;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>SMANSSA Photo Gallery</h1>
+        <a href="https://www.mas.edu.jo/"><img src="./Media/icon/school-icon.png" alt="School Logo" id="schoolLogo"></a>
+    </header>
+
+    <div class="container">
+        <div class="photo-gallery" id="photoGallery">
+            <!-- Add alumni photos here -->
+            <div class="photo" onclick="showAlumni('alumni1')">
+                <img src="./Media/alex-Valley-0437-200.jpg" alt="Alumni 1">
+                <p>Jane Smith</p>
+            </div>
+            <div class="photo" onclick="showAlumni('alumni2')">
+                <img src="./Media/alex-valley-0518-200.jpg" alt="Alumni 2">
+                <p>Mailine Ortega</p>
+            </div>
+            <div class="photo" onclick="showAlumni('alumni3')">
+                <img src="./Media/mark-west-9062-200.jpg" alt="Alumni 1">
+                <p>Will Osborn</p>
+            </div>
+            <div class="photo" onclick="showAlumni('alumni4')">
+                <img src="./Media/redwood1851-200.jpg" alt="Alumni 2">
+                <p>Phillip Foden</p>
+            </div>
+            <div class="photo" onclick="showAlumni('alumni5')">
+                <img src="./Media/redwoodA1908-200.jpg" alt="Alumni 1">
+                <p>Andreas Velasco</p>
+            </div>
+            <div class="photo" onclick="showAlumni('alumni6')">
+                <img src="./Media/xF7A0304-200.jpg" alt="Alumni 2">
+                <p>Pearl Muffin</p>
+            </div>
+            <div class="photo" onclick="showAlumni('alumni7')">
+                <img src="./Media/XF7A0311-200.jpg" alt="Alumni 1">
+                <p>Maryse Orlando</p>
+            </div>
+            <div class="photo" onclick="showAlumni('alumni8')">
+                <img src="./Media/xF7A2177-200.jpg" alt="Alumni 2">
+                <p>Alex Reid</p>
+            </div>
+            <div class="photo" onclick="showAlumni('alumni9')">
+                <img src="./Media/xF7A2844-200.jpg" alt="Alumni 1">
+                <p>Jean Rowe</p>
+            </div>
+            <div class="photo" onclick="showAlumni('alumni10')">
+                <img src="./Media/xF7A3150-200.jpg" alt="Alumni 12">
+                <p>Mia Arizzabalaga</p>
+            </div>
+            <div class="photo" onclick="showAlumni('alumni11')">
+                <img src="./Media/XF7A3544-200.jpg" alt="Alumni 11">
+                <p>Axel Young</p>
+            </div>
+            <!-- Add more photos as needed -->
+        </div>
+        <div class="pagination" id="pagination">
+            <button id="prevPage">Previous</button>
+            <button id="nextPage">Next</button>
+        </div>
+    </div>
+
+
+
+    <div class="alumni-details" id="alumniDetails">
+        <!-- Alumni details will be loaded here using JavaScript -->
+    </div>
+
+    <footer>
+        &copy; 2023 SMANSSA School Galery
+    </footer>
+
+    <script>
+        // JavaScript to dynamically load alumni details
+        const alumniData = {
+            alumni1: {
+                name: "Jane Smith",
+                bio: "I’m an author, librarian and editor with experience in school, public and hospital libraries and archives. I write fiction and non-fiction, for adults and children. Find out more about my books here. I enjoy talking to groups of adults or children. If you'd like me to speak to your group, library or school, please contact me or Speakers Ink, or for South Australian bookings, please contact Becky's Literary Bookings. For questions or comments about the books, please get in touch here. I love every aspect of book production: research, reviewing, writing, editing and proofreading. Please visit my editing services page for more information.",
+                photos: ["./Media/alex-Valley-0437-200.jpg", "./Media/alex-Valley-0437-200.jpg", "./Media/alex-Valley-0437-200.jpg"],
+                socialMedia: {
+                    instagram: {
+                        username: "johndoe",
+                        link: "https://www.instagram.com/johndoe"
+                    },
+                    facebook: {
+                        username: "JohnDoe",
+                        link: "https://www.facebook.com/johndoe"
+                    },
+                    whatsapp: {
+                        number: "+1234567890"
+                    },
+                    twitter: {
+                        username: "johndoe",
+                        link: "https://twitter.com/johndoe"
+                    },
+                },
+            },
+            alumni2: {
+                name: "Mailine Ortega",
+                bio: " ",
+                photos: ["./Media/alex-valley-0518-200.jpg", "./Media/alex-valley-0518-200.jpg", "./Media/alex-valley-0518-200.jpg"],
+                socialMedia: {
+                    instagram: {
+                        username: "janesmith",
+                        link: "https://www.instagram.com/janesmith"
+                    },
+                    facebook: {
+                        username: "JaneSmith",
+                        link: "https://www.facebook.com/janesmith"
+                    },
+                    whatsapp: {
+                        number: "+9876543210"
+                    },
+                    twitter: {
+                        username: "janesmith",
+                        link: "https://twitter.com/janesmith"
+                    },
+                },
+            },
+            // Add more alumni data as needed
+        };
+
+
+        function showAlumni(alumniId) {
+            const alumniDetails = document.getElementById("alumniDetails");
+            const alumni = alumniData[alumniId];
+
+            if (alumni) {
+                const photoHTML = alumni.photos.map(
+                    (photo) => `<img src="${photo}" alt="${alumni.name} Photo">`
+                ).join("");
+
+                const socialMediaHTML = Object.keys(alumni.socialMedia).map((platform) => {
+                    let platformHTML = '';
+                    if (platform === 'instagram') {
+                        platformHTML = `
+                                        <a href="${alumni.socialMedia[platform].link}" target="_blank">
+                                            <img src="./Media/icon/instagram.png" alt="${platform} icon">
+                                            <span>${alumni.socialMedia[platform].username}</span>
+                                        </a>
+                                    `;
+                    } else if (platform === 'facebook') {
+                        platformHTML = `
+                                        <a href="${alumni.socialMedia[platform].link}" target="_blank">
+                                            <img src="./Media/icon/fb.png" alt="${platform} icon">
+                                            <span>${alumni.socialMedia[platform].username}</span>
+                                        </a>
+                                    `;
+                    } else if (platform === 'twitter') {
+                        platformHTML = `
+                                        <a href="${alumni.socialMedia[platform].link}" target="_blank">
+                                            <img src="./Media/icon/x.png" alt="${platform} icon">
+                                            <span>${alumni.socialMedia[platform].username}</span>
+                                        </a>
+                                    `;
+                    } else if (platform === 'whatsapp') {
+                        platformHTML = `
+                                        <a href="https://wa.me/${alumni.socialMedia[platform].number}" target="_blank">
+                                            <img src="./Media/icon/whatsapp.png" alt="${platform} icon">
+                                            <span>${alumni.socialMedia[platform].number}</span>
+                                        </a>
+                                    `;
+                    }
+                    return platformHTML;
+                }).join(" ");
+
+                const alumniHTML = `
+                                <h2>${alumni.name}</h2>
+                                <p>${alumni.bio}</p>
+                                <div class="social-media">
+                                    ${socialMediaHTML}
+                                </div>
+                                <div class="photo-gallery">
+                                    ${photoHTML}
+                                </div>
+                            `;
+
+                alumniDetails.innerHTML = alumniHTML;
+            } else {
+                alumniDetails.innerHTML = "<p>Alumni not found.</p>";
+            }
+        }
+
+        const photoGallery = document.getElementById("photoGallery");
+        const pagination = document.getElementById("pagination");
+        const prevPageButton = document.getElementById("prevPage");
+        const nextPageButton = document.getElementById("nextPage");
+
+        const photosPerPage = 5; // Number of photos to display per page
+        let currentPage = 1;
+
+        // Function to display photos for the current page
+        function displayPhotos() {
+            const photos = document.querySelectorAll(".photo");
+            const startIndex = (currentPage - 1) * photosPerPage;
+            const endIndex = startIndex + photosPerPage;
+
+            photos.forEach((photo, index) => {
+                if (index >= startIndex && index < endIndex) {
+                    photo.style.display = "block";
+                } else {
+                    photo.style.display = "none";
+                }
+            });
+        }
+
+        // Function to handle previous page button click
+        function prevPage() {
+            if (currentPage > 1) {
+                currentPage--;
+                displayPhotos();
+            }
+        }
+
+        // Function to handle next page button click
+        function nextPage() {
+            const photos = document.querySelectorAll(".photo");
+            const totalPhotos = photos.length;
+            const totalPages = Math.ceil(totalPhotos / photosPerPage);
+
+            if (currentPage < totalPages) {
+                currentPage++;
+                displayPhotos();
+            }
+        }
+
+        // Initial display
+        displayPhotos();
+
+        // Event listeners for pagination buttons
+        prevPageButton.addEventListener("click", prevPage);
+        nextPageButton.addEventListener("click", nextPage);
+
+    </script>
+</body>
+</html>
